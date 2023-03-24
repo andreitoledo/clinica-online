@@ -29,7 +29,7 @@
 ---
 ![menu-administrador](https://user-images.githubusercontent.com/16118637/227602645-bc351ffc-f7c2-42a3-a000-b0bb7cc8dfad.png)
 ![menu-medicos](https://user-images.githubusercontent.com/16118637/227602666-1c6c48f5-bbfb-4404-92b1-db9066ca0314.png)
-![menu-pacientes](https://user-images.githubusercontent.com/16118637/227602683-ecadf94a-4dfd-4d9c-8feb-d8c5a8305ce5.png)
+![menu-pacientes](https://user-images.githubusercontent.com/16118637/227602915-7e9cac9b-5907-4649-ae68-6b73ad838587.png)
 ---
 
 
