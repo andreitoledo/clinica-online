@@ -25,6 +25,16 @@
 ![Dashboard](https://user-images.githubusercontent.com/16118637/227600538-db92b12d-ba67-482d-a162-cac69d346afa.png)
 ---
 
+> #### *Menus*
+---
+![menu-administrador](https://user-images.githubusercontent.com/16118637/227601557-1b46c5f5-d4e6-4d99-aebf-d07bb37ff9e8.png)
+![menu-medicos](https://user-images.githubusercontent.com/16118637/227601586-3715ef95-08f2-4d06-8a66-9689e9efb03c.png)
+![menu-pacientes](https://user-images.githubusercontent.com/16118637/227601620-97e874ac-2c90-4598-a0f0-42ede2d72291.png)
+---
+
+
+
+
 ----
 >#### @author:                             
 >#### Andrei Toledo                        
