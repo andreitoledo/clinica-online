@@ -27,9 +27,9 @@
 
 > #### *Menus*
 ---
-####![menu-administrador](https://user-images.githubusercontent.com/16118637/227601557-1b46c5f5-d4e6-4d99-aebf-d07bb37ff9e8.png)
-####![menu-medicos](https://user-images.githubusercontent.com/16118637/227601586-3715ef95-08f2-4d06-8a66-9689e9efb03c.png)
-####![menu-pacientes](https://user-images.githubusercontent.com/16118637/227601620-97e874ac-2c90-4598-a0f0-42ede2d72291.png)
+![menu-administrador](https://user-images.githubusercontent.com/16118637/227602645-bc351ffc-f7c2-42a3-a000-b0bb7cc8dfad.png)
+![menu-medicos](https://user-images.githubusercontent.com/16118637/227602666-1c6c48f5-bbfb-4404-92b1-db9066ca0314.png)
+![menu-pacientes](https://user-images.githubusercontent.com/16118637/227602683-ecadf94a-4dfd-4d9c-8feb-d8c5a8305ce5.png)
 ---
 
 
