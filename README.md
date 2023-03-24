@@ -25,7 +25,7 @@
 ![Dashboard](https://user-images.githubusercontent.com/16118637/227600538-db92b12d-ba67-482d-a162-cac69d346afa.png)
 ---
 
-> #### *Menus: Administrativo / Médicos / Pacientes*
+> #### *Menus: Administrador / Médicos / Pacientes*
 ---
 ![menu-administrador](https://user-images.githubusercontent.com/16118637/227602645-bc351ffc-f7c2-42a3-a000-b0bb7cc8dfad.png)
 ![menu-medicos](https://user-images.githubusercontent.com/16118637/227602666-1c6c48f5-bbfb-4404-92b1-db9066ca0314.png)
