@@ -4,6 +4,16 @@
 ---
 > #### *O projeto ainda esta --->> EM DESENVOLVIMENTO <<---*
 ---
+> #### *Tecnologias utilizadas no projeto* 
+
+> #### IDE Spring Tool Suite 4
+> #### Spring Boot 2.1.4.RELEASE
+> #### Java 1.8 para compilar o projeto
+> #### Spring Data JPA
+> #### Thymeleaf
+> #### Devtools para gerenciar o projeto dentro da IDE
+> #### Banco de dados MySql
+---
 
 > #### *Diagrama Entidade Relacionamento (ER)*
 
