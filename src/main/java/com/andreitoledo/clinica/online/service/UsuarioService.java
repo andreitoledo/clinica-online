@@ -27,7 +27,7 @@ public class UsuarioService implements UserDetailsService {
 		return repository.findByEmail(email);
 	}
 
-	@Override
+	@Override @Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Usuario usuario = buscarPorEmail(username);
 

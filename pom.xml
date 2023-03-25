@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.andreitoledo.clinica.online</groupId>
-	<artifactId>demo-security</artifactId>
+	<artifactId>clinica-online</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo-security</name>
-	<description>Demo project for Spring Security</description>
+	<name>clinica-online</name>
+	<description>Cinica Médica Online</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
