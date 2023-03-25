@@ -62,23 +62,30 @@ public class UsuarioService implements UserDetailsService {
 				? repository.findAll(datatables.getPageable())
 				: repository.findByEmailOrPerfil(datatables.getSearch(), datatables.getPageable());
 		return datatables.getResponse(page);
-	}
+	}	
 	
+	@Transactional(readOnly = false)
+	public void salvarUsuario(Usuario usuario) {
+		String crypt = new BCryptPasswordEncoder().encode(usuario.getSenha());
+		usuario.setSenha(crypt);
+
+		repository.save(usuario); 	 	
+	}
+	  
 	/*
-	 * @Transactional(readOnly = false) public void salvarUsuario(Usuario usuario) {
-	 * String crypt = new BCryptPasswordEncoder().encode(usuario.getSenha());
-	 * usuario.setSenha(crypt);
+	 * @Transactional(readOnly = true) 
+	 * public Usuario buscarPorId(Long id) {
 	 * 
-	 * repository.save(usuario); }
+	 * return repository.findById(id).get(); 
+	 * }
 	 * 
-	 * @Transactional(readOnly = true) public Usuario buscarPorId(Long id) {
-	 * 
-	 * return repository.findById(id).get(); }
-	 * 
-	 * @Transactional(readOnly = true) public Usuario buscarPorIdEPerfis(Long
+	 * @Transactional(readOnly = true) 
+	 * public Usuario buscarPorIdEPerfis(Long
 	 * usuarioId, Long[] perfisId) {
 	 * 
 	 * return repository.findByIdAndPerfis(usuarioId, perfisId) .orElseThrow(() ->
-	 * new UsernameNotFoundException("Usuário inexistente!")); }
+	 * new UsernameNotFoundException("Usuário inexistente!")); 
+	 * }
 	 */
+	 
 }
