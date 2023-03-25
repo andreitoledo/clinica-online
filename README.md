@@ -21,8 +21,8 @@
 ---
 
 > #### *Dashboard*
-
-![Dashboard](https://user-images.githubusercontent.com/16118637/227689231-9ffeaa39-10a3-4148-aaf0-b70a6cb449f0.png)
+> 
+![Dashboard](https://user-images.githubusercontent.com/16118637/227689375-01bca9a2-29fb-4af1-a3b4-b5f95e23ab8f.png)
 ---
 
 > #### *Menus: Administrador / Médicos / Pacientes*
