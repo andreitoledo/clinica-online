@@ -97,14 +97,16 @@
     <option>"2">Médico</option>
 	<option>"3">Paciente</option>
 	 -->
-	<script	th:src="~{}" th:fragment="js"></script>
-	<script th:inline="javascript" th:fragment="inlinescript">
-		$('#perfis').ready(function(){
+	 
+<!-- 	 		$('#perfis').ready(function(){
 			var perfis = [[${usuario.perfis}]];
 			$.each(perfis, function(k, v) {
 				$('#perfis option[value="'+ v.id +'"]').attr('selected', 'selected');
 			})
-		});
+		}); -->
+	<script	th:src="~{}" th:fragment="js"></script>
+	<script th:inline="javascript" th:fragment="inlinescript">
+
 	</script>
 </body>
 </html>

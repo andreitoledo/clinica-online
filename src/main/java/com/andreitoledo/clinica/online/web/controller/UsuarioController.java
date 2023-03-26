@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.andreitoledo.clinica.online.domain.Medico;
 import com.andreitoledo.clinica.online.domain.Perfil;
+import com.andreitoledo.clinica.online.domain.PerfilTipo;
 import com.andreitoledo.clinica.online.domain.Usuario;
+import com.andreitoledo.clinica.online.service.MedicoService;
 import com.andreitoledo.clinica.online.service.UsuarioService;
 
 
@@ -28,6 +31,9 @@ public class UsuarioController {
 	
 	@Autowired
 	private UsuarioService service;
+	
+	@Autowired
+	private MedicoService medicoService;
 	
 	// Abrir cadatro de usuario (medico/admin/paciente)
 	@GetMapping("/novo/cadastro/usuario")
@@ -80,5 +86,43 @@ public class UsuarioController {
 
         return new ModelAndView("usuario/cadastro", "usuario", service.buscarPorId(id));
     }
+    
+    
+    @GetMapping("/editar/dados/usuario/{id}/perfis/{perfis}")
+    public ModelAndView preEditarCadastroDadosPessoais(@PathVariable("id") Long usuarioId, 
+    												   @PathVariable("perfis") Long[] perfisId) {
+    	
+    	Usuario us = service.buscarPorIdEPerfis(usuarioId, perfisId);
+    	
+    	// If para direcionar cada perfil a sua página permitida
+    	
+    	// Se for ADMIN, acessa os dados na pagina de credenciais, usuario/cadastro
+    	if (us.getPerfis().contains(new Perfil(PerfilTipo.ADMIN.getCod())) &&
+        		!us.getPerfis().contains(new Perfil(PerfilTipo.MEDICO.getCod())) ) {
+        		
+        		return new ModelAndView("usuario/cadastro", "usuario", us);
+        		
+        	// Se for médico, acessa os dados na pagina medico/cadastro	
+        	} else if (us.getPerfis().contains(new Perfil(PerfilTipo.MEDICO.getCod()))) {
+        		
+        		Medico medico = medicoService.buscarPorUsuarioId(usuarioId);
+        		return medico.hasNotId()
+        				? new ModelAndView("medico/cadastro", "medico", new Medico(new Usuario(usuarioId)))
+        				: new ModelAndView("medico/cadastro", "medico", medico);
+        	
+        	// Se for paciente, não pode acessar os dados do usuário
+        	} else if (us.getPerfis().contains(new Perfil(PerfilTipo.PACIENTE.getCod()))) {
+        		ModelAndView model = new ModelAndView("error");
+        		// ModelAndView utiliza addObject e não addAttribute como ModelMap
+        		model.addObject("status", 403);
+        		model.addObject("error", "Área Restrita");
+        		model.addObject("message", "Os dados de pacientes são restritos a ele.");
+        		return model;
+        	}
+    	
+    	return new ModelAndView("redirect:/u/lista");
+    	
+    }
+    
 
 }
