@@ -90,7 +90,21 @@
 		</main>
 
 	</section>
+<!-- o javascript abaixo, recebe a lista, passa a lista que seria os objetos de perfis e no for passa o option
+	para o value indicando que o option foi selecionado. sabendo assim qual option foi
+	selecionado no cadastro, para quando editar mostrar na tela.
+	<option>"1">Administrador</option>
+    <option>"2">Médico</option>
+	<option>"3">Paciente</option>
+	 -->
 	<script	th:src="~{}" th:fragment="js"></script>
-	<script th:inline="javascript" th:fragment="inlinescript"></script>
+	<script th:inline="javascript" th:fragment="inlinescript">
+		$('#perfis').ready(function(){
+			var perfis = [[${usuario.perfis}]];
+			$.each(perfis, function(k, v) {
+				$('#perfis option[value="'+ v.id +'"]').attr('selected', 'selected');
+			})
+		});
+	</script>
 </body>
 </html>
