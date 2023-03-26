@@ -106,6 +106,9 @@ public class UsuarioController {
         	} else if (us.getPerfis().contains(new Perfil(PerfilTipo.MEDICO.getCod()))) {
         		
         		Medico medico = medicoService.buscarPorUsuarioId(usuarioId);
+        		
+        		// Se esse médico não tem um Id, faz um insert.
+        		// Se tem Id faz um update
         		return medico.hasNotId()
         				? new ModelAndView("medico/cadastro", "medico", new Medico(new Usuario(usuarioId)))
         				: new ModelAndView("medico/cadastro", "medico", medico);
