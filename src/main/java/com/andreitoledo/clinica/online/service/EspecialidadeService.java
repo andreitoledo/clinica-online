@@ -2,6 +2,7 @@ package com.andreitoledo.clinica.online.service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -58,5 +59,12 @@ public class EspecialidadeService {
 		
 		return repository.findEspecialidadesByTermo(termo);
 	}
+	
+	@Transactional(readOnly = true)
+	public Set<Especialidade> buscarPorTitulos(String[] titulos) {
+		
+		return repository.findByTitulos(titulos);
+	}
+
 
 }
