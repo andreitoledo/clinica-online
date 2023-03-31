@@ -6,11 +6,13 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.andreitoledo.clinica.online.domain.Paciente;
 import com.andreitoledo.clinica.online.domain.Usuario;
 import com.andreitoledo.clinica.online.service.PacienteService;
+import com.andreitoledo.clinica.online.service.UsuarioService;
 
 @Controller
 @RequestMapping("pacientes")
@@ -18,6 +20,9 @@ public class PacienteController {
 	
 	@Autowired
 	private PacienteService service;
+	
+	@Autowired
+	private UsuarioService usuarioService;
 	
 	// abrir pagina de dados pessoais do paciente
 	@GetMapping("/dados")
@@ -29,5 +34,19 @@ public class PacienteController {
 		model.addAttribute("paciente", paciente);
 		return "paciente/cadastro";
 	}
+	
+	// salvar o form de dados pessoais do paciente com verificacao de senha
+		@PostMapping("/salvar")
+		public String salvar(Paciente paciente, ModelMap model, @AuthenticationPrincipal User user) {
+			Usuario u = usuarioService.buscarPorEmail(user.getUsername());
+			if (UsuarioService.isSenhaCorreta(paciente.getUsuario().getSenha(), u.getSenha())) {
+				paciente.setUsuario(u);
+				service.salvar(paciente);
+				model.addAttribute("sucesso", "Seus dados foram inseridos com sucesso.");
+			} else {
+				model.addAttribute("falha", "Sua senha não confere, tente novamente.");
+			}
+			return "paciente/cadastro";
+		}	
 
 }
