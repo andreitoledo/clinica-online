@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.andreitoledo.clinica.online.domain.Agendamento;
 import com.andreitoledo.clinica.online.domain.Horario;
 import com.andreitoledo.clinica.online.repository.AgendamentoRepository;
 
@@ -20,6 +21,12 @@ public class AgendamentoService {
 	public List<Horario> buscarHorariosNaoAgendadosPorMedicoIdEData(Long id, LocalDate data) {
 		
 		return repository.findByMedicoIdAndDataNotHorarioAgendado(id, data);
+	}
+	
+	@Transactional(readOnly = false)
+	public void salvar(Agendamento agendamento) {
+		
+		repository.save(agendamento);
 	}
 
 	
