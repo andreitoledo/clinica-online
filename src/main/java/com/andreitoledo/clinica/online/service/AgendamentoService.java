@@ -55,6 +55,14 @@ public class AgendamentoService {
 		Page<HistoricoPaciente> page = repository.findHistoricoByMedicoEmail(email, datatables.getPageable());
 		return datatables.getResponse(page);
 	}
+
+	@Transactional(readOnly = true)
+	public Agendamento buscarPorIdEUsuario(Long id, String email) {
+		
+		return repository
+				.findByIdAndPacienteOrMedicoEmail(id, email)
+				.orElseThrow(() -> new AcessoNegadoException("Acesso negado ao usuário: " + email));
+	}
 	
 	@Transactional(readOnly = false)
 	public void editar(Agendamento agendamento, String email) {
@@ -64,14 +72,6 @@ public class AgendamentoService {
 		ag.setHorario(agendamento.getHorario());
 		ag.setMedico(agendamento.getMedico());
 				
-	}
-
-	@Transactional(readOnly = true)
-	public Agendamento buscarPorIdEUsuario(Long id, String email) {
-		
-		return repository
-				.findByIdAndPacienteOrMedicoEmail(id, email)
-				.orElseThrow(() -> new AcessoNegadoException("Acesso negado ao usuário: " + email));
 	}
 
 	
