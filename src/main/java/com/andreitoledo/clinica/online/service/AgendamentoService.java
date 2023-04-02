@@ -15,6 +15,7 @@ import com.andreitoledo.clinica.online.datatables.Datatables;
 import com.andreitoledo.clinica.online.datatables.DatatablesColunas;
 import com.andreitoledo.clinica.online.domain.Agendamento;
 import com.andreitoledo.clinica.online.domain.Horario;
+import com.andreitoledo.clinica.online.exception.AcessoNegadoException;
 import com.andreitoledo.clinica.online.repository.AgendamentoRepository;
 import com.andreitoledo.clinica.online.repository.projection.HistoricoPaciente;
 
@@ -53,6 +54,24 @@ public class AgendamentoService {
 		datatables.setColunas(DatatablesColunas.AGENDAMENTOS);
 		Page<HistoricoPaciente> page = repository.findHistoricoByMedicoEmail(email, datatables.getPageable());
 		return datatables.getResponse(page);
+	}
+	
+	@Transactional(readOnly = false)
+	public void editar(Agendamento agendamento, String email) {
+		Agendamento ag = buscarPorIdEUsuario(agendamento.getId(), email);
+		ag.setDataConsulta(agendamento.getDataConsulta());
+		ag.setEspecialidade(agendamento.getEspecialidade());
+		ag.setHorario(agendamento.getHorario());
+		ag.setMedico(agendamento.getMedico());
+				
+	}
+
+	@Transactional(readOnly = true)
+	public Agendamento buscarPorIdEUsuario(Long id, String email) {
+		
+		return repository
+				.findByIdAndPacienteOrMedicoEmail(id, email)
+				.orElseThrow(() -> new AcessoNegadoException("Acesso negado ao usuário: " + email));
 	}
 
 	
