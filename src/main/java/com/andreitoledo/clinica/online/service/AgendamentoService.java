@@ -70,9 +70,13 @@ public class AgendamentoService {
 		ag.setDataConsulta(agendamento.getDataConsulta());
 		ag.setEspecialidade(agendamento.getEspecialidade());
 		ag.setHorario(agendamento.getHorario());
-		ag.setMedico(agendamento.getMedico());
-				
+		ag.setMedico(agendamento.getMedico());				
 	}
 
+	@Transactional(readOnly = false)
+	public void remover(Long id) {
+		
+		repository.deleteById(id);		
+	}
 	
 }
