@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.andreitoledo.clinica.online.datatables.Datatables;
 import com.andreitoledo.clinica.online.datatables.DatatablesColunas;
 import com.andreitoledo.clinica.online.domain.Perfil;
+import com.andreitoledo.clinica.online.domain.PerfilTipo;
 import com.andreitoledo.clinica.online.domain.Usuario;
 import com.andreitoledo.clinica.online.repository.UsuarioRepository;
 
@@ -94,7 +95,16 @@ public class UsuarioService implements UserDetailsService {
 	public void alterarSenha(Usuario usuario, String senha) {
 		usuario.setSenha(new BCryptPasswordEncoder().encode(senha));
 		repository.save(usuario);		
-	}  
+	}
+	
+	@Transactional(readOnly = false)
+	public void salvarCadastroPaciente(Usuario usuario) {
+		String crypt = new BCryptPasswordEncoder().encode(usuario.getSenha());
+		usuario.setSenha(crypt);
+		usuario.addPerfil(PerfilTipo.PACIENTE);
+		repository.save(usuario);		
+	}
+	
 
 	 
 }
