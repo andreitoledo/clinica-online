@@ -2,6 +2,7 @@ package com.andreitoledo.clinica.online.service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -41,9 +42,12 @@ public class UsuarioService implements UserDetailsService {
 
 	@Override @Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Usuario usuario = buscarPorEmail(username);
+		Usuario usuario = buscarPorEmailAtivo(username)
+				.orElseThrow(() -> new UsernameNotFoundException("Usuario " + username + " não encontrado."));
 
-		return new User(usuario.getEmail(), usuario.getSenha(),
+		return new User(
+				usuario.getEmail(), 
+				usuario.getSenha(),
 				AuthorityUtils.createAuthorityList(getAtuthorities(usuario.getPerfis())));
 	}
 
@@ -104,6 +108,13 @@ public class UsuarioService implements UserDetailsService {
 		usuario.addPerfil(PerfilTipo.PACIENTE);
 		repository.save(usuario);		
 	}
+	
+	@Transactional(readOnly = true)
+	public Optional<Usuario> buscarPorEmailAtivo(String email){
+		
+		return repository.findByEmailAtivo(email);
+	}
+	
 	
 
 	 
